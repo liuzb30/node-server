@@ -9,7 +9,13 @@ server.on(
   "request",
   (request: http.IncomingMessage, response: http.ServerResponse) => {
     const { method, url, headers } = request;
-    console.log("url", url);
+    console.log("method", method);
+    if (method !== "GET") {
+      response.statusCode = 405;
+      response.end();
+      return;
+    }
+
     const { pathname } = parse(url as string);
     const path = pathname?.substr(1) || "index.html";
 

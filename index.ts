@@ -34,6 +34,7 @@ server.on(
           response.end("您无权查看");
         }
       } else {
+        response.setHeader("Cache-Control", "public, max-age=31536000");
         response.end(data);
       }
     });

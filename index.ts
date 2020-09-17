@@ -15,10 +15,21 @@ server.on(
 
     readFile(resolve(publicDir, path), (error, data) => {
       if (error) {
-        response.statusCode = 404;
-        response.end();
+        console.log(error);
+        if (error.errno === -4058) {
+          readFile(resolve(publicDir, "404.html"), (error, data) => {
+            if (error) throw error;
+            response.statusCode = 404;
+            response.end(data);
+          });
+        } else if (error.errno === -4068) {
+          response.statusCode = 403;
+          response.setHeader("Content-Type", "text/html; charset=utf-8");
+          response.end("您无权查看");
+        }
+      } else {
+        response.end(data);
       }
-      response.end(data);
     });
   }
 );

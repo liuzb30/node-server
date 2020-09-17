@@ -1,9 +1,13 @@
 {
   "name": "static-server-node",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^14.10.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/liuzb30/node-server.git"
   }
 }
